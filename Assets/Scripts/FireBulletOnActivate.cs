@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -6,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 namespace MyVrSample
 {
     /// <summary>
-    /// Í∂åÏ¥ù Ï¥ùÏïå Î∞úÏÇ¨
+    /// ±«√— √—æÀ πﬂªÁ
     /// </summary>
     public class FireBulletOnActivate : MonoBehaviour
     {
@@ -16,17 +15,16 @@ namespace MyVrSample
         public float bulletSpeed = 20f;
         #endregion
 
-        void Start()
+        private void Start()
         {
-            XRGrabInteractable interactable = GetComponent<XRGrabInteractable>();
-            interactable.activated.AddListener(Fire);
+            XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
+            grabInteractable.activated.AddListener(Fire);
         }
 
         void Fire(ActivateEventArgs args)
         {
             GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bulletGo.GetComponent<Rigidbody>().linearVelocity = firePoint.forward * bulletSpeed;
-
             Destroy(bulletGo, 5f);
         }
     }
