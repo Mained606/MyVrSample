@@ -54,14 +54,14 @@ namespace MyFps
 
         void Die()
         {
-            //Debug.Log("GameOver!!!");
-            fader.FadeTo(loadToScene);
+            Debug.Log("GameOver!!!");
+            // fader.FadeTo(loadToScene);
         }
 
         IEnumerator DamageEffect()
         {
             damageFlash.SetActive(true);
-            CinemachineShake.Instance.ShakeCamera(1f, 1f);
+            // CinemachineShake.Instance.ShakeCamera(1f, 1f);
 
             int randNumber = Random.Range(1, 4);
             if(randNumber == 1)

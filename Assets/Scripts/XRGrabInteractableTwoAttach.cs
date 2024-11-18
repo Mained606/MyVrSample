@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 namespace MyVrSample
 {
     /// <summary>
-    /// µÎ°³ÀÇ Attach Point ±¸Çö
+    /// ï¿½Î°ï¿½ï¿½ï¿½ Attach Point ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public class XRGrabInteractableTwoAttach : XRGrabInteractable
     {
@@ -16,7 +16,7 @@ namespace MyVrSample
 
         protected override void OnSelectEntering(SelectEnterEventArgs args)
         {
-            //µÎ°³ÀÇ Attach Point¸¦ Àâ´Â ¼Õ¿¡ µû¶ó ±¸ºÐÇØ¼­ Àû¿ë
+            //ï¿½Î°ï¿½ï¿½ï¿½ Attach Pointï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (args.interactorObject.transform.CompareTag("LeftHand"))
             {
                 attachTransform = leftAttachTransform;
@@ -31,7 +31,7 @@ namespace MyVrSample
         
         /*protected override void OnSelectEntered(SelectEnterEventArgs args)
         {
-            //µÎ°³ÀÇ Attach Point¸¦ Àâ´Â ¼Õ¿¡ µû¶ó ±¸ºÐÇØ¼­ Àû¿ë
+            //ï¿½Î°ï¿½ï¿½ï¿½ Attach Pointï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½
             if(args.interactorObject.transform.CompareTag("LeftHand"))
             {
                 attachTransform = leftAttachTransform;

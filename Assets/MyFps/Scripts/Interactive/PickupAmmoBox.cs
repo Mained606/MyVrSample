@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace MyFps
@@ -17,6 +18,12 @@ namespace MyFps
             PlayerStats.Instance.AddAmmo(giveAmmo);
 
             //킬
+            StartCoroutine(DestroyAfterDelay());
+        }
+
+        private IEnumerator DestroyAfterDelay()
+        {
+            yield return new WaitForSeconds(0.1f);
             Destroy(gameObject);
         }
     }

@@ -48,6 +48,9 @@ namespace MyFps
 
         //게임 퍼즐 아이템 키
         private bool[] puzzleKeys;
+
+        public static bool flag = true;
+
         #endregion
 
         private void Start()

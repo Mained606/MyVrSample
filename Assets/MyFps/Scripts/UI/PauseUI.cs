@@ -1,5 +1,6 @@
 using UnityEngine;
 using StarterAssets;
+using UnityEngine.InputSystem;
 
 namespace MyFps
 {
@@ -12,6 +13,8 @@ namespace MyFps
         [SerializeField] private string loadToScene = "MainMenu";
 
         private GameObject thePlayer;
+
+        public InputActionProperty showButton;
         #endregion
 
         private void Start()
@@ -22,11 +25,10 @@ namespace MyFps
 
         private void Update()
         {
-            /*//
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if(showButton.action.WasPressedThisFrame())
             {
                 Toggle();
-            }*/
+            }
         }
 
         public void Toggle()
@@ -35,7 +37,7 @@ namespace MyFps
 
             if (pauseUI.activeSelf) //pause 창이 오픈 될때, 사운드? && !isSequence
             {
-                thePlayer.GetComponent<FirstPersonController>().enabled = false;
+                // thePlayer.GetComponent<FirstPersonController>().enabled = false;
                 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -44,7 +46,7 @@ namespace MyFps
             }
             else //pause 창이 클로즈 될때
             {
-                thePlayer.GetComponent<FirstPersonController>().enabled = true;
+                // thePlayer.GetComponent<FirstPersonController>().enabled = true;
 
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using StarterAssets;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+
 
 namespace MyFps
 {
@@ -13,7 +14,7 @@ namespace MyFps
         public SceneFader fader;
 
         //sequence UI
-        public TextMeshProUGUI textBox; 
+        public TextMeshProUGUI textBox;
         [SerializeField]
         private string sequence01 = "...Where am I?";
         [SerializeField]
@@ -21,11 +22,13 @@ namespace MyFps
         //음성 사운드
         public AudioSource line01;
         public AudioSource line02;
+
         #endregion
 
         // Start is called before the first frame update
         void Start()
         {
+
             //마우스 커서 상태 설정
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -37,10 +40,12 @@ namespace MyFps
         IEnumerator PlaySequence()
         {
             //0.플레이 캐릭터 비 활성화
-            thePlayer.GetComponent<FirstPersonController>().enabled = false;
+            thePlayer.GetComponentInChildren<DynamicMoveProvider>().enabled = false;
+
 
             //1.페이드인 연출(4초 대기후 페인드인 효과)            
-            fader.FromFade(4f); //5초동안 페이드 효과
+            fader.FromFade(10f); //5초동안 페이드 효과
+            yield return new WaitForSeconds(4f);
 
             //2.화면 하단에 시나리오 텍스트 화면 출력(3초), 음성 출력
             //(...Where am I?)
@@ -59,7 +64,8 @@ namespace MyFps
             textBox.gameObject.SetActive(false);
 
             //4.플레이 캐릭터 활성화
-            thePlayer.GetComponent<FirstPersonController>().enabled = true;
+            thePlayer.GetComponentInChildren<DynamicMoveProvider>().enabled = true;
+
         }
 
     }

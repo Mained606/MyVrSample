@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 namespace MyFps
 {
@@ -24,13 +27,32 @@ namespace MyFps
 
         //임팩트
         public GameObject hitImpactPrefab;
+
+        private XRGrabInteractable interactable;
         #endregion
 
         // Start is called before the first frame update
         void Start()
         {
             //참조
-            animator = GetComponent<Animator>();
+            animator = GetComponentInChildren<Animator>();
+            interactable = GetComponent<XRGrabInteractable>();
+
+            if (interactable != null)
+            {
+                interactable.activated.AddListener(Shoot);
+            }
+        }
+
+        private void Shoot(ActivateEventArgs args)
+        {
+            if (!isFire)
+            {
+                if (PlayerStats.Instance.UseAmmo(1) == true)
+                {
+                    StartCoroutine(Shoot());
+                }
+            }
         }
 
         // Update is called once per frame
@@ -44,6 +66,8 @@ namespace MyFps
                     StartCoroutine(Shoot());
                 }                
             }*/
+
+
         }
 
         IEnumerator Shoot()
@@ -53,7 +77,7 @@ namespace MyFps
             //내앞에 100안에 적이 있으면 적에게 데미지를 준다
             float maxDistance = 100f;
             RaycastHit hit;
-            if(Physics.Raycast(firePoint.position, firePoint.TransformDirection(Vector3.forward), out hit, maxDistance))
+            if (Physics.Raycast(firePoint.position, firePoint.TransformDirection(Vector3.forward), out hit, maxDistance))
             {
                 //적에게 데미지를 준다
                 //Debug.Log($"{hit.transform.name}에게 데미지를 준다");
@@ -84,7 +108,7 @@ namespace MyFps
         }
 
         //Gimo 그리기 : 총 위치에서 앞에 충돌체까지 레이저 쏘는 선 그리기
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             float maxDistance = 100f;
             RaycastHit hit;

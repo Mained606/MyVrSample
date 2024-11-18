@@ -20,6 +20,7 @@ namespace MyFps
         private void Start()
         {
             //참조
+            base.Awake(); // 부모 클래스의 Awake 호출
             animator = GetComponent<Animator>();
             m_Collider = GetComponent<Collider>();
         }
@@ -42,7 +43,8 @@ namespace MyFps
             bgm01.Stop();
 
             //다음씬으로 이동
-            fader.FadeTo(loadToScene);
+            // fader.FadeTo(loadToScene);
+            Debug.Log("게임 엔딩");
         }
     }
 }

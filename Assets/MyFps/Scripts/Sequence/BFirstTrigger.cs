@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+
 
 namespace MyFps
 {
@@ -18,7 +20,13 @@ namespace MyFps
         private string sequence = "Looks like a weapon on that table";
 
         public AudioSource line03;
+
         #endregion
+
+        private void Start()
+        {
+
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -29,7 +37,9 @@ namespace MyFps
         IEnumerator PlaySequence()
         {
             //플레이 캐릭터 비활성화(플레이 멈춤)
-            thePlayer.GetComponent<FirstPersonController>().enabled = false;
+            // DisableMovement();
+            thePlayer.GetComponentInChildren<DynamicMoveProvider>().enabled = false;
+            
 
             //대사 출력: "Looks like a weapon on that table.", 음성 출력
             textBox.gameObject.SetActive(true);
@@ -50,11 +60,15 @@ namespace MyFps
             textBox.gameObject.SetActive(false);
 
             //플레이 캐릭터 활성화(다시 플레이)
-            thePlayer.GetComponent<FirstPersonController>().enabled = true;
+            // EnableMovement();
+            thePlayer.GetComponentInChildren<DynamicMoveProvider>().enabled = true;
+
+
 
             //트리거 충돌체 비활성화 - 킬
             Destroy(gameObject);
             //transform.GetComponent<BoxCollider>().enabled = false;
         }
+
     }
 }
